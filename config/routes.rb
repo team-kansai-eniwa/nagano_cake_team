@@ -1,63 +1,50 @@
 Rails.application.routes.draw do
+
+   # 顧客用
+  # URL /customers/sign_in ...
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+
+  # 管理者用
+  # URL /admin/sign_in ...
+   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+     sessions: "admin/sessions"
+   }
   
-  namespace :admin do
-    get 'order_details/update'
-  end
-  namespace :admin do
-    get 'orders/show'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-    get 'addresses/create'
-    get 'addresses/update'
-    get 'addresses/destroy'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/thanks'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_all'
-    get 'cart_items/create'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/unsubscribe'
-    get 'customers/withdraw'
+  
+  scope module: :public do
+    root to: 'homes#top'
+    get 'about', to: "homes#about"
+
+    resources :items, only: [:index, :show]
+
+    get 'customers/my_page', to:"customers#show"
+    get 'customers/infomation/edit', to:"customers#edit"
+    patch 'customers/infomation', to:"customers#update"
+    get 'customers/unsubscribe', to: "customers#unsubscribe"
+    patch 'customers/withdraw', to: "customers#withdraw"
+
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete 'cart_items/destroy_all', to: "cart_items#destroy_all" 
+
+    resources :orders, only: [:new, :create, :index, :show]
+    post 'orders/confirm', to: "orders#confirm"
+    get 'orders/thanks', to: "orders#thanks"
+
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
+  namespace :admin do
+    get 'homes', to: "homes#top"
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:update]
+    resources :orders_details, only: [:update]
+  end
+  
+   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
