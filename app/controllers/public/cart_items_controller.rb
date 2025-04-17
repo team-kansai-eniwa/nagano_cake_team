@@ -1,7 +1,11 @@
 class Public::CartItemsController < ApplicationController
-  before_action :authenticate_customer!
+  #before_action :authenticate_customer!
   
   def index
+    @cart_item = CartItem.new
+    @cart_items = CartItem.all
+    @unit_price = @cart_items.item.price
+    @total_price = 0
   end
 
   def update
