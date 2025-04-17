@@ -1,51 +1,42 @@
 <div class="container my-4 px-4">
-
-  <h5 class="bg-light px-3 rounded d-inline-block">商品詳細</h5>
-
+  <h5 class="bg-light px-3 d-inline-block">商品詳細</h5>
 
   <div class="row mt-4">
-  <div class="col-md-3">
-    <% if @item.image.attached? %>
-      <%= image_tag url_for(@item.image), class: "img-fluid" %>
-    <% else %>
-      <p>画像がありません。</p>
-    <% end %>
-     </div>
+    <div class="col-md-4">
+      <% if @item.image.attached? %>
+        <%= image_tag url_for(@item.image), class: "img-thumbnail", style: "width: 300px; height: 200px; object-fit: cover;" %>
+      <% else %>
+        <p>画像がありません。</p>
+      <% end %>
+    </div>
 
-     <div class="col-md-9">
+    <div class="col-md-8">
       <% label_width = "180px" %>
-      
-
-     <div class="mb-4 d-flex">
-     <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">商品名</div>
-     <div><%= @item.name %></div>
-   </div>
-
-   <div class="mb-3 d-flex">
-   <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">商品説明</div>
-   <div><%= @item.introduction %></div>
- </div>
- 
- <div class="mb-3 d-flex">
- <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">ジャンル</div>
-   <div><%= @item.genre.name %></div>
- </div>
-
- <div class="mb-3 d-flex">
- <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">
-   税込価格<br>(税抜価格)
- </div>
- <div><%= number_to_currency(@item.price * 1.1, unit: "", delimiter: ",", precision: 0) %> (<%= number_to_currency(@item.price, unit: "", delimiter: ",", precision: 0) %>円)</div>
-</div>
-
-<div class="mb-3 d-flex">
-<div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">
-   販売ステータス
- </div>
- <div><%= @item.is_active ? "販売中" : "販売停止中" %></div>
-</div>
-
-<%= link_to '編集する', edit_admin_item_path(@item), class: 'btn btn-success btn-lg' %>
+      <div class="mb-4 d-flex">
+        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">商品名</div>
+        <div><%= @item.name %></div>
+      </div>
+      <div class="mb-3 d-flex">
+        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">商品説明</div>
+        <div><%= @item.introduction %></div>
+      </div>
+      <div class="mb-3 d-flex">
+        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">ジャンル</div>
+        <div><%= @item.genre.name %></div>
+      </div>
+      <div class="mb-3 d-flex">
+        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">税込価格<br>(税抜価格)</div>
+        <div><%= number_to_currency(@item.price * 1.1, unit: "", delimiter: ",", precision: 0) %> (<%= number_to_currency(@item.price, unit: "", delimiter: ",", precision: 0) %>円)</div>
+      </div>
+        <div class="mb-3 d-flex">
+        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">販売ステータス</div>
+        <div class="<%= @item.is_active ? 'text-success font-weight-bold' : 'text-secondary font-weight-bold' %>">
+          <%= @item.is_active ? "販売中" : "販売停止中" %>
+        </div>
     </div>
   </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-success btn-lg", style: "border-radius: 8px;" %>
 </div>
