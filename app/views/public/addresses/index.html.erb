@@ -49,7 +49,7 @@
       <td></td>
       <td>
         <div  class="align-middle">
-          <%= f.submit "編集内容を保存", class: "btn btn-success w-50" %>
+          <%= f.submit "新規登録", class: "btn btn-success w-50" %>
         </div>
       </td>
     </tr>
@@ -59,3 +59,24 @@
   <% end %>
   </div>
   
+  <!-- 配送先一覧 -->
+  <table>
+    <tr>
+      <td>郵便番号</td>
+      <td>住所</td>
+      <td>宛名</td>
+      <td><td>
+    </tr>
+    <tr>
+    <% @addresses.each do |address| %>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+      <td>
+        <%= link_to "編集する", edit_address_path(address), class: "btn btn-primary w-30" %>
+        <%= link_to "削除する", address_path(address), method: :delete, class: "btn btn-primary w-30" %>
+      </td>
+    <% end %>
+    </tr>
+    
+  </table>

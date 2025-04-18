@@ -1,2 +1,61 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<h1>配送先編集</h1>
+
+<%= form_with model: @address, url: addresses_path, method: :patch do |f| %>
+
+  <table class="table table-borderless">
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  
+  <!-- 郵便番号の欄 -->
+  <tr>
+    <td class="align-middle">郵便番号(ハイフンなし)</td>
+    <td>
+      <div class="align-middle">
+        <%= f.text_field :postal_code, autocomplete: "postal_code", class: "form-control" %>
+      </div>
+    </td>
+  </tr>
+  
+  <!-- 住所の欄 -->
+  <tr>
+    <td class="align-middle">住所</td>
+    <td>
+      <div class="align-middle">
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+    </td>
+  </tr>
+  
+  <!-- 宛名の欄 -->
+  <tr>
+    <td class="align-middle">宛名</td>
+    <td>
+      <div class="align-middle">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </td>
+  </tr>
+  
+  </tbody>
+  
+  <!-- 変更内容を保存ボタン -->
+  <tfoot>
+    <tr>
+      <td></td>
+      <td>
+        <div  class="align-middle">
+          <%= f.submit " 変更内容を保存", class: "btn btn-success w-50" %>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+  </table>
+  
+  <% end %>
+  </div>
+
