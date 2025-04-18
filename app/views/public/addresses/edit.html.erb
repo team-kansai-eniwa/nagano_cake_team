@@ -1,7 +1,7 @@
 <div class= "container">
 <h1>配送先編集</h1>
 
-<%= form_with model: @address, url: addresses_path, method: :patch do |f| %>
+<%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
 
   <table class="table table-borderless">
   <tbody>
