@@ -1,4 +1,5 @@
-<h1>配送先登録/一覧</h1>
+<div class= "container">
+  <h1>配送先登録/一覧</h1>
 
 <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
 
@@ -58,8 +59,12 @@
   
   <% end %>
   </div>
+  </div>
+
+
   
   <!-- 配送先一覧 -->
+  <div class= "container">
   <table>
     <tr>
       <td>郵便番号</td>
@@ -80,3 +85,5 @@
     </tr>
     
   </table>
+</div>
+  
