@@ -1,2 +1,50 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h3>ショッピングカート</h3>
+        <%= link_to "カート空にする", cart_items_destroy_all_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= cart_item.item.name %></td> 
+            <td><%= cart_item.tax_price %></td> 
+            <td>
+              <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
+              <%= f.collection_select :amount, (1..99).to_a, :to_s, :to_s %>
+              <%= f.submit "変更", class: "btn btn-success" %>
+              <% end %>
+            </td>
+            <td><%= cart_item.subtotal %></td>
+            <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
+          </tr>
+          <% @total_price += cart_item.subtotal %>
+        <% end %>
+      </table>
+
+      <div class="d-flex align-items-center justify-content-between my-3">
+        <%= link_to "買い物を続ける", root_path, class: 'btn btn-primary' %>
+        <div class="d-flex justify-content-end align-items-center ">
+          <table class="table table-bordered mb-0", style="width: 250px;">
+            <tr>
+              <th>合計金額</th>
+              <td><%= @total_price %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-5">
+        <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success' %>
+      </div>
+
+    </div>
+  </div>
+</div>
