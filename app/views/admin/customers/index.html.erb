@@ -13,12 +13,12 @@
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.id %></td>
-          <td><%= link_to "(customer.last_name customer.first_name)", admin_customer_path(customer) %></td>
+          <td><u><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer), class: "text-dark" %></u></td>
           <td><%= customer.email %></td>
           <td>
             <% if customer.is_active %>
               <p class="text-success"><strong>有効</strong></p>
-            <% elsif %>
+            <% else %>
               <p class="text-muted"><strong>退会</strong></p>
             <% end %>
           </td>
