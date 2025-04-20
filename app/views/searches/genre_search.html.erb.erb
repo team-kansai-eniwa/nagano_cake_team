@@ -1,0 +1,24 @@
+<!-- app/views/searches/genre_search.html.erb -->
+<div class="container my-5 px-4">
+  <h5 class="bg-light px-4 ml-3 d-inline-block">ジャンルで絞り込み</h5>
+  
+  <!-- 商品一覧表示 -->
+  <table class="table table-bordered table-hover text-center">
+    <thead class="thead-light">
+      <tr>
+        <th>商品名</th>
+        <th>価格</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.price %>円</td>
+          <td><%= link_to '詳細', item_path(item) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -4,6 +4,7 @@ class Public::ItemsController < ApplicationController
     @items = Item.page(params[:page]).per(8)
     @genres = Genre.all
     @items_all = Item.all
+    
   end
 
   def show
