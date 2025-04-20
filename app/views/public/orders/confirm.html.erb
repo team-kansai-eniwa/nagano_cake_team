@@ -16,33 +16,28 @@
             <td><%= cart_item.item.name %></td> 
             <td><%= cart_item.tax_price %></td> 
             <td><%= cart_item.amount %></td>
-            <td><%= cart_item.subtotal %></td>
+            <td><%= number_with_delimiter(cart_item.subtotal) %></td>
           </tr>
-          <% number_with_delimiter(@total_price += cart_item.subtotal) %>
         <% end %>
       </table>
       <h5>支払い方法</h5>
       <div class="ml-2">
-        <%= @order.payment_method %>
+        <%= @order.payment_method_i18n %>
       </div>
 
       <h5>お届け先</h5>
-        <% if @num = 1 %>
-          <div class="ml-2">
-            〒<%= @order.postal_code + "　" + @order.address %><br>
-            <%= current_customer.last_name + current_customer.first_name %>
-          </div>
-        <% elsif @num = 2 %>
-          <div class="ml-2">
-            〒<%= @order.postal_code + "　" + @order.address %><br>
-            <%= @order.name %>
-          </div>
-        <% elsif @num =3 %>
-          <div class="ml-2">
-            〒<%= @order.postal_code + "　" + @order.address %><br>
-            <%= @order.name %>
-          </div>
-        <% end %>
+      <% if @num == 1 %>
+        <div class="ml-2">
+          〒<%= @order.postal_code + "　" + @order.address %><br>
+          <%= current_customer.last_name + current_customer.first_name %>
+        </div>
+      <% else %>
+        <div class="ml-2">
+          〒<%= @order.postal_code + "　" + @order.address %><br>
+          <%= @order.name %>
+        </div>
+      <% end %>
+          
 
     </div>
     <div class="col-4">
@@ -55,11 +50,7 @@
           <tr>
             <th>商品合計</th>
             <td>
-              <% if @total_price <= 800 %>
                 <%= number_with_delimiter(@total_price) %>
-              <% else %>
-                <%= number_with_delimiter(@total_price - @postage) %>
-              <% end %> 
             </td>
           </tr>
           <tr>
@@ -71,6 +62,6 @@
     </div>
   </div>
   <div class="text-center mt-5">
-        <%= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success ' %>
+        <%= link_to "注文を確定する", orders_path, method: :post, class: 'btn btn-success ' %>
     </div>
 </div>
