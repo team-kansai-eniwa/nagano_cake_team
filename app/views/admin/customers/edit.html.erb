@@ -1,6 +1,6 @@
 <div class="container">
   <h5 class="bg-light px-4 ml-3 d-inline-block"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h5>
-  <%= form_with model: @customer, url: admin_customer_path(@customer), method: :PATCH do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
     <table>
       <tr>
         <td>会員ID</td>
@@ -34,8 +34,8 @@
       </tr>
       <tr>
         <td>会員ステータス</td>
-        <td><%= @customer.is_active %></td>
-        <td><%= f.text_field :is_active, autocomplete: "is_active", class: "form-control" %></td>
+        <td>
+        <%= f.text_field :is_active, autocomplete: "is_active", class: "form-control" %></td>
       </tr>
       <tr>
         <td></td>
