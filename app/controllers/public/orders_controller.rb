@@ -16,7 +16,8 @@ class Public::OrdersController < ApplicationController
       @total_price += cart_item.subtotal
     end
 
-    session[:total_price] = @total_price
+    session[:cart_item] = @cart_items
+    session[:total_price] = @total_price + @postage
     
     if params[:order][:select_address].present? && params[:order][:payment_method].present?
       if params[:order][:select_address] == "self"
@@ -94,9 +95,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.includes(order_details: :item)
   end
 
   def show
+    @postage = 800
+    @order = current_customer.orders.find(params[:id])
+    @order_details = current_customer.orders.includes(order_details: :item)
   end
 
   private

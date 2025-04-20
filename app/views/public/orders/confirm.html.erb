@@ -16,7 +16,7 @@
             <td><%= cart_item.item.name %></td> 
             <td><%= cart_item.tax_price %></td> 
             <td><%= cart_item.amount %></td>
-            <td><%= cart_item.subtotal %></td>
+            <td><%= number_with_delimiter(cart_item.subtotal) %></td>
           </tr>
         <% end %>
       </table>
@@ -50,11 +50,7 @@
           <tr>
             <th>商品合計</th>
             <td>
-              <% if @total_price <= 800 %>
                 <%= number_with_delimiter(@total_price) %>
-              <% else %>
-                <%= number_with_delimiter(@total_price - @postage) %>
-              <% end %> 
             </td>
           </tr>
           <tr>

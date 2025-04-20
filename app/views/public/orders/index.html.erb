@@ -1,29 +1,33 @@
 <div class="container mt-5">
   <div class="row">
     <div class="w-100">
-      <h3>注文履歴一覧</h3>
     </div>
     <div class="col">
+      <h4>注文履歴一覧</h4>
       <table class="table table-bordered">
         <tr>
-          <th>商品名</th>
-          <th>単価（税込）</th>
-          <th>数量</th>
-          <th>小計</th>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
         </tr>
-        <% @cart_items.each do |cart_item| %>
-          <tr>
-            <td><%= cart_item.item.name %></td> 
-            <td><%= cart_item.tax_price %></td> 
-            <td><%= cart_item.amount %></td>
-            <td><%= cart_item.subtotal %></td>
-          </tr>
-          <% number_with_delimiter(@total_price += cart_item.subtotal) %>
+        <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime("%Y/%m/%d") %></td> 
+              <td>
+                〒<%= order.postal_code %><br>
+                <%= order.address %><br>
+                <%= order.name %><br>
+              </td> 
+              <td> </td>
+              <td><%= number_with_delimiter(order.total_payment) %></td>
+              <td><%= t("activerecord.attributes.order.status.#{order.status_i18n}") %></td>
+              <td><%= link_to "表示する", order_path(order), class: 'btn btn-primary' %></td>
+            </tr>
         <% end %>
       </table>
     </div>
   </div>
-  <div class="text-center mt-5">
-        <%= link_to "注文を確定する", orders_thanks_path, class: 'btn btn-success0' %>
-    </div>
 </div>
