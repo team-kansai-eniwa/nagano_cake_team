@@ -10,26 +10,34 @@
         <tbody>
           <% @genres.each do |genre| %>
             <tr>
-              <td><%= genre.name %></td>
+              <td>
+                <%= link_to items_path(genre_id: genre.id) do %>
+                  <%= genre.name %>
+                <% end %>
+              </td>
             </tr>
-            <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
     <div class="col-md-10 px-5">
-    <p><span class="h2">商品一覧</span>(全<%= @items_all.count %>件)</span></p>
+      <% if @items_all.present? %>
+        <p><span class="h2">商品一覧</span>(全<%= @items_all.count %>件)</span></p>
+      <% else %>
+        <p><span class="h2"><%= @genre.name %> 一覧</span>(全<%= @items.total_count %>件)</span></p>
+      <% end %> 
       <div class="row">
-      <% @items.each do |item| %>
-        <div class="col-3 mb-3">
-          <div>
-            <%= link_to item_path(item) do %>
-              <%= image_tag url_for(item.image), class: "img-thumbnail", style: "width: 200px; height: 130px; object-fit: cover;" %>
-            <% end %>
-            <p><%= item.name %></p>
-            <p><%= item.price %>円</p>
+        <% @items.each do |item| %>
+          <div class="col-3 mb-3">
+            <div>
+              <%= link_to item_path(item) do %>
+                <%= image_tag url_for(item.image), class: "img-thumbnail", style: "width: 200px; height: 130px; object-fit: cover;" %>
+              <% end %>
+              <p><%= item.name %></p>
+              <p><%= item.price %>円</p>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
       </div>
       <div class="d-flex justify-content-center">
         <%= paginate @items %>
