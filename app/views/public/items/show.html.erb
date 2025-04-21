@@ -26,12 +26,17 @@
           <h2><%= @item.name %></h2>
           <p class="my-5"><%= @item.introduction %></p>
           <p class="my-5"><span class="h4">￥<%= number_to_currency(@item.price * 1.1, unit: "", delimiter: ",", precision: 0) %></span>(税込)</p>
+          <% if current_customer.present? %>
           <%= form_with model: @cart_item_new, url: cart_items_path, local: true do |f| %>
             <%= f.hidden_field :customer_id, value: current_customer.id %>
             <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.collection_select :amount, [["個数選択", ""]] + (1..99).to_a.map { |i| [i.to_s, i.to_s] }, :last, :first, {}, class: "mx-3 border-primary rounded" %>
             <%= f.submit "カートに入れる", class: "btn btn-success btn-lg ml-3", style: "border-radius: 8px;" %>
           <% end %>
+        <% else %>
+          <p>カートに入れるには…</p>
+          <%= link_to 'ログイン', new_customer_session_path, class: "btn btn-primary" %>
+        <% end %>
         </div>
     </div>
   </div>

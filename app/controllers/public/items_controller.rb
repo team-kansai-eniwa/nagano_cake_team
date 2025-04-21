@@ -2,6 +2,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @genres = Genre.all
+
   
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
