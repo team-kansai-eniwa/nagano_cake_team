@@ -1,15 +1,16 @@
 class Public::ItemsController < ApplicationController
 
   def index
+    @genres = Genre.all
+  
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @items = Item.genre_search(params[:genre_id]).page(params[:page]).per(8)
-      @genres = Genre.all
+      @items = Item.genre_search(params[:genre_id]).page(params[:page]).per(8) 
       
     else
       @items = Item.page(params[:page]).per(8)
-      @genres = Genre.all
-      @items_all = Item.all
+      @items_count = Item.all.count
+      @genre = Genre.all
     end
   end
 
