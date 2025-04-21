@@ -1,8 +1,8 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
     <div class="col-md-2">
       <table class="table table-borderless " style="border: 1px solid black;">
-        <thead class="custom-bordered-thead">
+        <thead>
           <tr>
             <th>ジャンル検索</th>
           </tr>
@@ -20,6 +20,7 @@
         </tbody>
       </table>
     </div>
+
     <div class="col-md-10 px-5">
       <% if @items_all.present? %>
         <p><span class="h2">商品一覧</span>(全<%= @items_all.count %>件)</span></p>
@@ -28,7 +29,7 @@
       <% end %> 
       <div class="row">
         <% @items.each do |item| %>
-          <div class="col-3 mb-3">
+          <div class="col-3">
             <div>
               <%= link_to item_path(item) do %>
                 <%= image_tag url_for(item.image), class: "img-thumbnail", style: "width: 200px; height: 130px; object-fit: cover;" %>

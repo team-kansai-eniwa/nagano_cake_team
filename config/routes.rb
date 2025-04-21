@@ -41,8 +41,10 @@ Rails.application.routes.draw do
     get 'homes', to: "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:update]
+    resources :customers, only: [:index, :show, :edit, :update] do
+      get 'orders', to: 'orders#customer_index', as: 'customer_orders'
+    end
+    resources :orders, only: [:index, :show, :update]
     resources :orders_details, only: [:update]
   end
   

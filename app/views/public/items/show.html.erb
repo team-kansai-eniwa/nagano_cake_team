@@ -1,8 +1,8 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
     <div class="col-md-2">
       <table class="table table-borderless " style="border: 1px solid black;">
-        <thead class="custom-bordered-thead">
+        <thead>
           <tr>
             <th>ジャンル検索</th>
           </tr>
@@ -12,7 +12,7 @@
             <tr>
               <td><%= genre.name %></td>
             </tr>
-            <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -21,7 +21,7 @@
       <%= image_tag url_for(@item.image), class: "img-thumbnail", style: "width: 300px; height: 200px; object-fit: cover;" %>
     </div>
 
-    <div class="col-md-6 px-5">
+    <div class="col-md-6 px-3">
         <div>
           <h2><%= @item.name %></h2>
           <p class="my-5"><%= @item.introduction %></p>
@@ -29,8 +29,8 @@
           <%= form_with model: @cart_item_new, url: cart_items_path, local: true do |f| %>
             <%= f.hidden_field :customer_id, value: current_customer.id %>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.collection_select :amount, (1..99).to_a, :to_s, :to_s %>
-            <%= f.submit "カートに入れる", class: "btn btn-success btn-lg", style: "border-radius: 8px;" %>
+            <%= f.collection_select :amount, [["個数選択", ""]] + (1..99).to_a.map { |i| [i.to_s, i.to_s] }, :last, :first, {}, class: "mx-3 border-primary rounded" %>
+            <%= f.submit "カートに入れる", class: "btn btn-success btn-lg ml-3", style: "border-radius: 8px;" %>
           <% end %>
         </div>
     </div>
