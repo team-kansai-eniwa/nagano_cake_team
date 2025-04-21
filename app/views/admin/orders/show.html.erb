@@ -1,45 +1,71 @@
 <div class= "container">
-<h3>注文履歴詳細</h3>
+  <h3>注文履歴詳細</h3>
 
-<table>
-  <tr><th>購入者</th><td><%= 購入者の表示 %></td></tr>
-  <tr><th>注文日</th><td><%= 注文日の表示 %></td></tr>
-  <tr>
-    <th>配送先</th>
-      <td><%= order.postal_code %>
-          <%= order.address %></td>
-  </tr>
-  <tr><th><th><td><%= order.name %></td></tr>
-  <tr><th>支払い方法</th><td><%= order.payment_method %></td></tr>
-  <tr><th>注文ステータス</th>
+  <table class="table">
+    <tr>
+      <th>購入者</th>
+      <td><%= "#{order.customer.last_name} #{order.customer.first_name}" %></td>
+    </tr>
+    <tr>
+      <th>注文日</th>
+      <td><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <td>
+        <%= order.postal_code %><%= order.address %><br>
+        <%= "#{order.customer.last_name} #{order.customer.first_name}" %>
+      </td>
+    </tr>
+    <tr>
+      <th>支払い方法</th>
+      <td><%= order.payment_method %></td>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
       <td><%= order.status %></td>
       <td><%= link_to "更新", admin_order_path(order), method: :patch, class: "btn btn-primary w-30" %></td>
-  </tr>
-</table>
+    </tr>
+  </table>
 
-<table>
-  <tr>
-    <th>商品名</th>
-    <th>単価（税込）</th>
-    <th>数量</th>
-    <th>小計</th>
-    <th>制作ステータス</th>
-  <tr>
-  <tr>
-  <% @order_detail.each do |order_detail| %>
-    <td><%= order_detail.商品名?? %></td>
-    <td><%= order_detail.price %></td>
-    <td><%= order_detail.amount %></td>
-    <td><%= (order_detail.price)*(order_detail.amount) %></td>
-    <td><%= order_detail.making_status %></td>
-    <td><%= link_to "更新", admin_orders_detail_path(order_detail), method: :patch, class: "btn btn-primary w-30" %></td>
-  </tr>
-  <% end % >
-</table>
+  <div class="row mt-4">
+    <div class="col-md-10">
+      <table class="table">
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>制作ステータス</th>
+        </tr>
+          <% @order_detail.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.item.price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= (order_detail.item.price)*(order_detail.amount) %></td>
+            <td><%= order_detail.making_status %></td>
+            <td><%= link_to "更新", admin_orders_detail_path(order_detail), method: :patch, class: "btn btn-primary w-30" %></td>
+          </tr>
+          <% end % >
+      </table>
+    </div>
 
-<table>
-  <tr><th>商品合計</th><td><%= order.total_payment %></td></tr>
-  <tr><th>送料</th><td><%= orders.shipping_cost %></td></tr>
-  <tr><th>請求金額合計</th><th><%= (order.total_payment)+(orders.shipping_cost) %></th></tr>
-</table>
+    <div class="col-md-2">
+      <table class="table">
+        <tr>
+          <th>商品合計</th>
+          <td><%= order.total_payment %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= order.shipping_cost %></td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td><%= (order.total_payment)+(order.shipping_cost) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

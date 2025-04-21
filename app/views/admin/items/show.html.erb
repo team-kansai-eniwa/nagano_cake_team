@@ -7,32 +7,36 @@
     </div>
 
     <div class="col-md-8">
-      <% label_width = "180px" %>
-      <div class="mb-4 d-flex">
-        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">商品名</div>
-        <div><%= @item.name %></div>
-      </div>
-      <div class="mb-3 d-flex">
-        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">商品説明</div>
-        <div><%= @item.introduction %></div>
-      </div>
-      <div class="mb-3 d-flex">
-        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">ジャンル</div>
-        <div><%= @item.genre.name %></div>
-      </div>
-      <div class="mb-3 d-flex">
-        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">税込価格<br>(税抜価格)</div>
-        <div><%= number_to_currency(@item.price * 1.1, unit: "", delimiter: ",", precision: 0) %> (<%= number_to_currency(@item.price, unit: "", delimiter: ",", precision: 0) %>円)</div>
-      </div>
-        <div class="mb-3 d-flex">
-        <div class="fw-bold me-3" style="width: <%= label_width %>; white-space: nowrap;">販売ステータス</div>
-        <div class="<%= @item.is_active ? 'text-success font-weight-bold' : 'text-secondary font-weight-bold' %>">
-          <%= @item.is_active ? "販売中" : "販売停止中" %>
-        </div>
+      <table class="table" style="border: none;">
+        <tr>
+          <th style="width: 20%; border: none; font-weight: normal;">商品名</th>
+          <td style="width: 80%; border: none; font-size: 1.2em;"><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th style="width: 20%; border: none; font-weight: normal;">商品説明</th>
+          <td style="width: 80%; border: none; font-size: 1.2em;"><%= truncate(@item.introduction, length: 170) %></td>
+        </tr>
+        <tr>
+          <th style="width: 20%; border: none; font-weight: normal;">ジャンル</th>
+          <td style="width: 80%; border: none; font-size: 1.2em;"><%= @item.genre.name %></td>
+        </tr>
+        <tr>
+          <th style="width: 20%; border: none; font-weight: normal;">税込価格<br>(税抜価格)</th>
+          <td style="width: 80%; border: none; font-size: 1.2em;"><%= number_to_currency(@item.price * 1.1, unit: "", delimiter: ",", precision: 0) %> (<%= number_to_currency(@item.price, unit: "", delimiter: ",", precision: 0) %>円)</td>
+        </tr>
+        <tr>
+          <th style="width: 20%; border: none; font-weight: normal;">販売ステータス</th>
+          <td style="width: 80%; border: none; font-size: 1.2em;">
+            <div class="<%= @item.is_active ? 'text-success font-weight-bold' : 'text-secondary font-weight-bold' %>">
+              <%= @item.is_active ? "販売中" : "販売停止中" %>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center my-4">
   <%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-success btn-lg", style: "border-radius: 8px;" %>
 </div>
