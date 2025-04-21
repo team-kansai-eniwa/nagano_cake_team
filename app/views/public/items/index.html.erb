@@ -22,10 +22,10 @@
     </div>
 
     <div class="col-md-10 px-5">
-      <% if @items_all.present? %>
-        <p><span class="h2">商品一覧</span>(全<%= @items_all.count %>件)</span></p>
+      <% if params[:genre_id].present? %>
+        <p><span class="h2"><%= @genre.name %> 一覧</span>全<%= @items.total_count %>件</span></p>
       <% else %>
-        <p><span class="h2"><%= @genre.name %> 一覧</span>(全<%= @items.total_count %>件)</span></p>
+        <p><span class="h2">商品一覧</span>(全<%= @items_count %>件)</span></p>
       <% end %> 
       <div class="row">
         <% @items.each do |item| %>
