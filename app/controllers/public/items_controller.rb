@@ -1,9 +1,16 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.page(params[:page]).per(8)
-    @genres = Genre.all
-    @items_all = Item.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @items = Item.genre_search(params[:genre_id]).page(params[:page]).per(8)
+      @genres = Genre.all
+      
+    else
+      @items = Item.page(params[:page]).per(8)
+      @genres = Genre.all
+      @items_all = Item.all
+    end
   end
 
   def show
