@@ -10,7 +10,11 @@
         <tbody>
           <% @genres.each do |genre| %>
             <tr>
-              <td><%= genre.name %></td>
+              <td>
+                <%= link_to items_path(genre_id: genre.id) do %>
+                  <%= genre.name %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
