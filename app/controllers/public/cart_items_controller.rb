@@ -37,6 +37,10 @@ class Public::CartItemsController < ApplicationController
 def create
   @cart_item = CartItem.new(cart_item_params)
 
+  if @cart_item.amount.to_i <= 0
+    return redirect_back fallback_location: item_path(@cart_item.item_id)
+  end
+
   overlap_item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
   if overlap_item
     overlap_item.amount += @cart_item.amount.to_i
