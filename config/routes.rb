@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       get 'orders', to: 'orders#customer_index', as: 'customer_orders'
     end
     resources :orders, only: [:index, :show, :update]
-    resources :orders_details, only: [:update]
+    resources :order_details, only: [:update]
   end
   
    
