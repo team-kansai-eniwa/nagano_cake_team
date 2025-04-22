@@ -30,9 +30,10 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
-      redirect_to admin_item_path(item), notice: "商品を更新しました。"
+    @item = Item.find(params[:id])
+    @genres = Genre.all
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item), notice: "商品を更新しました。"
     else
       flash.now[:alert] = "更新に失敗しました。"
       render :edit

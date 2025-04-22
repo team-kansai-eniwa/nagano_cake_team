@@ -1,9 +1,8 @@
 class Admin::HomesController < ApplicationController
-  before_action :authenticate_admin!
+  # before_action :authenticate_admin!
 
-  # order_detailsのデータが保存されていないため現在は表示されない
   def top
     @orders = Order.page(params[:page])
-    @order_details = OrderDetail.page(params[:page])
+    # @order_details = OrderDetail.includes(order: :customer).order(created_at: :desc).page(params[:page]).per(10)
   end
 end
