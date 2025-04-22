@@ -19,17 +19,23 @@
     </tr>
     <tr>
       <th>支払い方法</th>
-      <td><%= @order.payment_method %></td>
+      <td><%= @order.payment_method_i18n %></td>
     </tr>
     <tr>
       <th>注文ステータス</th>
-      <td><%= @order.status %></td>
-      <td><%= link_to "更新", admin_order_path(order), method: :patch, class: "btn btn-primary w-30" %></td>
-    </tr>
+      <td>
+      <%= form_with model: [:admin, @order], url: admin_order_path(@order), method: :patch do |f| %>
+        <div>
+        <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] } %>
+          <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
+        </div>
+      <% end %>
+      </td>
+      </tr>
   </table>
 
   <div class="row mt-4">
-    <div class="col-md-10">
+    <div class="col-md-9">
       <table class="table">
         <tr>
           <th>商品名</th>
@@ -38,20 +44,26 @@
           <th>小計</th>
           <th>制作ステータス</th>
         </tr>
-          <% @order_detail.each do |order_detail| %>
+          <% @order.order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
             <td><%= order_detail.item.price %></td>
             <td><%= order_detail.amount %></td>
             <td><%= (order_detail.item.price)*(order_detail.amount) %></td>
-            <td><%= order_detail.making_status %></td>
-            <td><%= link_to "更新", admin_orders_detail_path(order_detail), method: :patch, class: "btn btn-primary w-30" %></td>
+            <td>
+            <%= form_with model: [:admin, order_detail], url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+              <div>
+                <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [I18n.t("enums.order_detail.making_status.#{k}"), k] } %>
+                <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
+              </div>
+            <% end %>
+          </td>
           </tr>
           <% end %>
       </table>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-3">
       <table class="table">
         <tr>
           <th>商品合計</th>

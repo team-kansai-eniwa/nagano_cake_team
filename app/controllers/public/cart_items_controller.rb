@@ -34,17 +34,18 @@ class Public::CartItemsController < ApplicationController
     end
   end
 
-  def create
-    @cart_item = CartItem.new(cart_item_params)
-    overlap_item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
-    if overlap_item
-      overlap_item.amount += @cart_item.amount
-      overlap_item.save
-    else
-      @cart_item.save
-    end
-    redirect_to cart_items_path
+def create
+  @cart_item = CartItem.new(cart_item_params)
+
+  overlap_item = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
+  if overlap_item
+    overlap_item.amount += @cart_item.amount.to_i
+    overlap_item.save
+  else
+    @cart_item.save
   end
+  redirect_to cart_items_path
+end
 
 private
 
