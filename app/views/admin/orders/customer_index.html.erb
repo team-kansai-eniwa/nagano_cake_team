@@ -1,6 +1,6 @@
-<div class="container my-5 px-4">
-  <h5 class="bg-light px-4 ml-3 d-inline-block"><%= "#{@customer.last_name} #{@customer.first_name}" %>さんの注文履歴</h5>
-  <table class="table table-borderless mt-4">
+<div class="container my-5">
+  <h4 class="bg-light px-4 ml-3 d-inline-block"><%= "#{@customer.last_name} #{@customer.first_name}" %>さんの注文履歴</h4>
+  <table class="table mt-4">
     <thead class="thead-light custom-bordered-thead">
       <tr>
       <th>購入日時</th>
@@ -9,11 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @order_details.each do |order_detail| %>
+      <% @orders.each do |order| %>
         <tr>
-          <td><%= order_detail.created_at %></td>
-          <td><%= order_detail.amount %></td>
-          <td><%= order_detail.production_status %></td>
+          <td><u><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'), admin_order_path(order), class: "text-dark" %></u></td>
+          <td><%= order.order_details.sum(&:amount) %></td>
+          <td><%= order.status_i18n %></td> 
         </tr>
       <% end %>
     </tbody>

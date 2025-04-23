@@ -12,48 +12,47 @@
     </div>
   <% end %>
 
-  <h5 class="bg-light px-3 mb-5 d-inline-block">商品新規登録</h5>
-
-  <div class="row">
+  <h4 class="bg-light px-4 ml-3 d-inline-block">商品新規登録</h4>
+  <div class="row mt-5">
     <div class="col-md-7 mx-auto">
       <%= form_with model: @item, local: true, html: { multipart: true }, url: admin_items_path do |f| %>
-        <div class="mb-3 row">
-          <%= f.label :image, "商品画像", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+        <div class="row mb-3">
+          <%= f.label :image, "商品画像", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
             <%= f.file_field :image, id: 'image_input' %>
           </div>
         </div>
-        <div class="mb-3 row">
-          <%= f.label :name, "商品名", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+        <div class="row mb-3">
+          <%= f.label :name, "商品名", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
             <%= f.text_field :name, class: "form-control" %>
           </div>
         </div>
-        <div class="mb-3 row">
-          <%= f.label :introduction, "商品説明", class: "col-sm-3 col-form-label" %>
-            <div class="col-sm-9">
+        <div class="row mb-3">
+          <%= f.label :introduction, "商品説明", class: "col-md-3 col-form-label" %>
+            <div class="col-md-9">
             <%= f.text_area :introduction, rows: 5, class: "form-control" %>
           </div>
         </div>
-        <div class="mb-3 row">
-          <%= f.label :genre_id, "ジャンル", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+        <div class="row mb-3">
+          <%= f.label :genre_id, "ジャンル", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
             <%= f.collection_select :genre_id, @genres, :id, :name, 
             { prompt: "--選択してください--" }, 
             { class: "form-select", style: "width: 100%;" } %>
           </div>
         </div>
-        <div class="mb-3 row">
-          <%= f.label :price, "税抜価格", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+        <div class="row mb-3">
+          <%= f.label :price, "税抜価格", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
             <div class="input-group">
               <%= f.text_field :price, class: "form-control" %>円
             </div>
           </div>
         </div>
-        <div class="mb-4 row">
-          <%= f.label :is_active, "販売ステータス", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+        <div class="row mb-4">
+          <%= f.label :is_active, "販売ステータス", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
             <div class="form-check form-check-inline">
               <%= f.radio_button :is_active, true, id: "active_true", class: "form-check-input" %>
               <%= f.label :is_active_true, "販売中", class: "form-check-label" %>
