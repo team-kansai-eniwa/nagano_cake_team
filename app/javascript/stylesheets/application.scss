@@ -1,1 +1,19 @@
 @use '~bootstrap/scss/bootstrap';
+
+
+  /*ページネーション自体のデザイン*/
+  .pagination>li>a {          
+    color: #000000;   /*文字の色を変える*/
+  }
+  /* 表示しているページ番号のデザイン */
+  .pagination>.active>a {     
+    background: #3d3f41;     /*背景の色を変える*/
+  }
+  /*ホバー時のデザイン*/
+  .pagination>li>a:hover {        
+    background: #696b6d;     /*背景の色を変える*/
+    color: #ffffff;   /*文字の色を変える*/
+  }
+
+
+ 

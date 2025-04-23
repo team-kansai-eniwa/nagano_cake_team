@@ -1,13 +1,13 @@
-<div class="container my-5">
+<div class="container mt-3 mb-5">
 
 <!--  -->
   <div class="row">
-    <div class="col-md-11">
+    <div class="col-md-10 d-flex align-items-center justify-content-between">
       <h4 class="bg-light px-4 ml-3 d-inline-block">商品一覧</h4>
     </div>
-    <div class="col-md-1 text-end">
-      <%= link_to new_admin_item_path, class: "btn btn-light rounded-circle shadow-lg add-button" do %>
-        <span class="h4 text-primary">+</span>
+    <div class="col-md-2">
+      <%= link_to new_admin_item_path do %>
+        <%= image_tag 'add_new_item.png', style: "width: 100px;" %>
       <% end %>
     </div>
   </div>
@@ -39,7 +39,7 @@
 
     </tbody>
   </table>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center mt-2">
     <%= paginate @items %>
   </div>
 </div>
