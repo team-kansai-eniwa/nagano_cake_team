@@ -20,5 +20,4 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
     @cart_item_new = CartItem.new
   end
-
 end

@@ -2,27 +2,30 @@
   <div class="row">
     <div class="col">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h3>ショッピングカート</h3>
+        <div class="bg-light text-center ml-5" style="width: 250px"> 
+          <h5>ショッピングカート</h5>
+        </div>
         <%= link_to "カート空にする", cart_items_destroy_all_path, method: :delete, class: 'btn btn-danger' %>
       </div>
       <table class="table table-bordered">
         <tr>
-          <th>商品名</th>
-          <th>単価（税込）</th>
-          <th>数量</th>
-          <th>小計</th>
+          <th class="bg-light" >商品名</th>
+          <th class="bg-light" style="width: 150px">単価（税込）</th>
+          <th class="bg-light" style="width: 150px">数量</th>
+          <th class="bg-light" style="width: 150px">小計</th>
+          <th class="bg-light" style="width: 150px"></th>
         </tr>
         <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= cart_item.item.name %></td> 
-            <td><%= cart_item.tax_price %></td> 
+            <td><%= image_tag cart_item.item.image, size: "50x50", class: "me-2 rounded mr-3" %><%= cart_item.item.name %></td> 
+            <td><%= number_with_delimiter(cart_item.tax_price) %></td> 
             <td>
               <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
               <%= f.collection_select :amount, (1..99).to_a, :to_s, :to_s %>
               <%= f.submit "変更", class: "btn btn-success" %>
               <% end %>
             </td>
-            <td><%= cart_item.subtotal %></td>
+            <td><%= number_with_delimiter(cart_item.subtotal) %></td>
             <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
           </tr>
           <% @total_price += cart_item.subtotal %>
@@ -35,14 +38,14 @@
           <table class="table table-bordered mb-0", style="width: 250px;">
             <tr>
               <th>合計金額</th>
-              <td><%= @total_price %></td>
+              <td><%= number_with_delimiter(@total_price) %></td>
             </tr>
           </table>
         </div>
       </div>
 
       <div class="d-flex justify-content-center mt-5">
-        <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success' %>
+        <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success px-5 py-2' %>
       </div>
 
     </div>

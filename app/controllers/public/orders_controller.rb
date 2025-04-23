@@ -117,7 +117,7 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.find(params[:id])
     
     @order.order_details.each do |order_detail|
-      @total_price = order_detail.price * order_detail.amount
+      @total_price += order_detail.price * order_detail.amount
     end
 
     
