@@ -4,26 +4,23 @@
       <div class="my-5">
         <a class="navbar-brand" href="/">LOGO</a>
       </div>
-      <div class="">
-        <h4></h4>
-      </div>
-      <div class="d-flex mr-0">
-        <ul class="navbar-nav ml-auto">  
+      <div class="d-flex">
+        <ul class="navbar-nav ">  
           <% if admin_signed_in? %> 
             <li class="mr-5">
-              <%= link_to "商品一覧", admin_items_path %>
+              <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
             </li>
             <li class="mr-5">
-              <%= link_to "会員一覧", admin_customers_path %>
+              <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
             </li>
             <li class="mr-5">
-              <%= link_to "注文履歴一覧", admin_homes_path %>
+              <%= link_to "注文履歴一覧", admin_homes_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
             </li>
             <li class="mr-5">
-              <%= link_to "ジャンル一覧", admin_genres_path%>
+              <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary w-100 px-3 py-1"%>
             </li>
             <li class="mr-5">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
             </li>
             
           <% elsif customer_signed_in?  %>
@@ -31,29 +28,29 @@
                 <h5>ようこそ <%= current_customer.last_name %>さん</5>
               </div>
               <li class="mr-5">
-                <%= link_to "マイページ", customers_my_page_path %>
+                <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
               <li class="mr-5">
-                <%= link_to "商品一覧", items_path %>
+                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
               <li class="mr-5">
-                <%= link_to "カート", cart_items_path %>
+                <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
               <li class="mr-5">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
           <% else %>
               <li class="mr-5">
-                <%= link_to "About", about_path %>
+                <%= link_to "About", about_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
               <li class="mr-5">
-                <%= link_to "商品一覧", items_path %>
+                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
               <li class="mr-5">
-                <%= link_to "新規登録", new_customer_registration_path %>
+                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
               <li class="mr-5">
-                <%= link_to "ログイン", new_customer_session_path %>
+                <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
               </li>
           <% end %>
         </ul>
