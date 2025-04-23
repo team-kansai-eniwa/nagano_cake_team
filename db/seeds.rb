@@ -42,3 +42,9 @@ end
   Genre.create!(name: "ジャンル#{i + 1}")
 end
 
+# Genre.create!([
+#   { name: 'ケーキ' },
+#   { name: 'キャンディ' },
+#   { name: '焼き菓子' },
+#   { name: 'プリン' }
+# ])

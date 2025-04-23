@@ -1,31 +1,31 @@
-<div class="container my-5 px-4">
-  <h5 class="bg-light px-4 ml-3 d-inline-block">会員一覧</h5>
-  <table class="table table-borderless mt-4">
+<div class="container my-5">
+  <h4 class="bg-light px-4 ml-3 d-inline-block">会員一覧</h4>
+
+  <!-- ワイヤー図だと会員一覧だけテーブル幅が狭いためそうしてるが統一するなら↓のstyle部分を消去する -->
+  <table class="table mt-4" style="width: 80%; margin: 0 auto;">
     <thead class="thead-light custom-bordered-thead">
       <tr>
-      <th>会員ID</th>
-      <th><u>氏名</u></th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
+        <th style="width: 10%;">会員ID</th>
+        <th style="width: 20%;">氏名</th>
+        <th style="width: 40%;">メールアドレス</th>
+        <th style="width: 20%;">ステータス</th>
       </tr>
     </thead>
+
     <tbody>
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.id %></td>
           <td><u><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer), class: "text-dark" %></u></td>
           <td><%= customer.email %></td>
-          <td>
-            <% if customer.is_active %>
-              <p class="text-success"><strong>有効</strong></p>
-            <% else %>
-              <p class="text-muted"><strong>退会</strong></p>
-            <% end %>
+          <td class="<%= customer.is_active ? "text-success font-weight-bold" : "text-secondary font-weight-bold" %>">
+            <%= customer.is_active ? "有効" : "退会" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
   <div class="d-flex justify-content-center">
     <%= paginate @customers %>
   </div>

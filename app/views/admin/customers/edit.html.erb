@@ -1,9 +1,21 @@
-<div class="container">
-  <h5 class="bg-light px-4 ml-3 d-inline-block"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h5>
+<div class="container my-5">
+
+<% if @customer.errors.any? %>
+  <div class="alert alert-danger">
+    <h6>以下のエラーがあります：</h6>
+    <ul>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h4 class="bg-light px-4 ml-3 d-inline-block"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-    <table>
+    <table class="table mt-4 table-borderless" style="width: 60%;">
       <tr>
-        <td>会員ID</td>
+      <td style="width: 30%;">会員ID</td>
         <td><%= @customer.id %></td>
       </tr>
       <tr>
@@ -41,7 +53,7 @@
       </tr>
       <tr>
         <td></td>
-            <td><%= f.submit "変更を保存",  class: "btn btn-success" %></td>
+            <td><%= f.submit "変更を保存", class: "btn btn-success btn-lg", style: "border-radius: 8px;" %>
       </tr>
     </table>
     <% end %>

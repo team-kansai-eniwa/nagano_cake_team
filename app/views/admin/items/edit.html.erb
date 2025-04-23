@@ -12,29 +12,29 @@
     </div>
   <% end %>
 
-  <h5 class="bg-light px-3 mb-5 d-inline-block">商品編集</h5>
-  <div class="row">
+  <h4 class="bg-light px-4 ml-3 d-inline-block">商品編集</h4>
+  <div class="row mt-5">
     <div class="col-md-7 mx-auto">
       <%= form_with model: [:admin, @item], local: true do |f| %>
-        <div class="mb-3 row">
+        <div class="row mb-3">
           <%= f.label :image, "商品画像", class: "col-sm-3 col-form-label" %>
           <div class="col-sm-9">
             <%= f.file_field :image, id: 'image_input' %>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="row mb-3">
           <%= f.label :name, "商品名", class: "col-sm-3 col-form-label" %>
           <div class="col-sm-9">
             <%= f.text_field :name, class: "form-control" %>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="row mb-3">
           <%= f.label :introduction, "商品説明", class: "col-sm-3 col-form-label" %>
             <div class="col-sm-9">
             <%= f.text_area :introduction, rows: 5, class: "form-control" %>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="row mb-3">
           <%= f.label :genre_id, "ジャンル", class: "col-sm-3 col-form-label" %>
           <div class="col-sm-9">
             <%= f.collection_select :genre_id, @genres, :id, :name, 
@@ -42,7 +42,7 @@
             { class: "form-select", style: "width: 100%;" } %>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="row mb-3">
           <%= f.label :price, "税抜価格", class: "col-sm-3 col-form-label" %>
           <div class="col-sm-9">
             <div class="input-group">
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        <div class="mb-4 row">
+        <div class="row mb-4">
           <%= f.label :is_active, "販売ステータス", class: "col-sm-3 col-form-label" %>
           <div class="col-sm-9">
             <div class="form-check form-check-inline">
