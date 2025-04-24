@@ -5,7 +5,7 @@
   <% genres.each do |genre| %>
     <tr>
       <td class="border-0 py-1">
-      <%= link_to items_path(genre_id: genre.id), class: "btn btn-outline-secondary px-3 py-1 w-100" do %>
+      <%= link_to items_path(genre_id: genre.id), class: "btn btn-outline-dark px-3 py-1 w-100" do %>
         <%= genre.name %>
       <% end %>
     </td>

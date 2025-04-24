@@ -36,23 +36,36 @@ class Public::OrdersController < ApplicationController
 
       elsif params[:order][:select_address] == "registered"
         @order = Order.new(order_params)
-        select_address = current_customer.addresses.find(params[:order][:address_id])
-        @order.postal_code = select_address.postal_code
-        @order.address = select_address.address
-        @order.name = select_address.name
+        
+        if params[:order][:address_id].blank?
+          flash[:alert] = "住所を選択してください"
+          @order = Order.new
+          render :new
+        else
+          select_address = current_customer.addresses.find(params[:order][:address_id])
+          @order.postal_code = select_address.postal_code
+          @order.address = select_address.address
+          @order.name = select_address.name
 
-        session[:payment_method] = @order.payment_method
-        session[:postal_code] = @order.postal_code
-        session[:address] = @order.address
-        session[:name] = @order.name
+          session[:payment_method] = @order.payment_method
+          session[:postal_code] = @order.postal_code
+          session[:address] = @order.address
+          session[:name] = @order.name
+        end
 
       elsif params[:order][:select_address] == "new"
         @order = Order.new(order_params)
 
-        session[:payment_method] = @order.payment_method
-        session[:postal_code] = @order.postal_code
-        session[:address] = @order.address
-        session[:name] = @order.name
+        if @order.postal_code.blank? || @order.address.blank? || @order.name.blank?
+          flash[:alert] = "入力フォームに不備があります"
+          @order = Order.new
+          render :new
+        else
+          session[:payment_method] = @order.payment_method
+          session[:postal_code] = @order.postal_code
+          session[:address] = @order.address
+          session[:name] = @order.name
+        end
       end
 
     elsif params[:order][:select_address].present? && params[:order][:payment_method].nil?
@@ -69,8 +82,6 @@ class Public::OrdersController < ApplicationController
         @order = Order.new
         render :new
     end
-
-
   end
 
   def thanks
