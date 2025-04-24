@@ -14,4 +14,5 @@ class Item < ApplicationRecord
   def active_status_label
     is_active ? "販売中" : "販売停止中"
   end
+
 end

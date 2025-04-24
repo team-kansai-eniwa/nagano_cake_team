@@ -1,65 +1,107 @@
-<!-- 7行目の<a class="navbar-brand" href="/">LOGO</a>を一時退避中 -->
 
 <header class="custom-header">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-      <div>
-        <%= link_to root_path do %>
-          <%= image_tag 'log.png', width: 150, height: "auto" %>
-        <% end %>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: ">
+    <div class="container-fluid">
+      <div class="ml-5 pl-5">
+        <a class="navbar-brand ml-5 pl-5" href="/">
+          <img src="/assets/logo_1.png" alt="NaganoCake Logo" height="120">
+        </a>
       </div>
-
-      <div class="d-flex">
-        <ul class="navbar-nav ">  
-          <% if admin_signed_in? %> 
-            <li class="mr-5">
-              <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-            </li>
-            <li class="mr-5">
-              <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-            </li>
-            <li class="mr-5">
-              <%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-            </li>
-            <li class="mr-5">
-              <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary w-100 px-3 py-1"%>
-            </li>
-            <li class="mr-5">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-            </li>
-            
-          <% elsif customer_signed_in?  %>
-              <div class="mr-5">
-                <h5>ようこそ <%= current_customer.last_name %>さん</5>
+      
+      <% if admin_signed_in? %> 
+        <div class="d-flex flex-column align-items-end mr-5 pr-5">
+          <ul class="list-unstyled">
+            <div class="d-flex ">
+              <li class="mr-5 ">
+                <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+              <li class="mr-5">
+                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+              <li class="mr-5">
+                <%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-outline-dark  w-100 px-3 py-2"%>
+              </li>
+              <li class="mr-5">
+                <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark  w-100 px-3 py-2"%>
+              </li>
+              <li class="mr-5">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+          </ul>
+          <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-1 my-lg-0" do |f| %>
+            <div class="input-group mr-5">
+              <%= f.text_field :word, class: "form-control", placeholder: "Search" %>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
               </div>
-              <li class="mr-5">
-                <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-              <li class="mr-5">
-                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-              <li class="mr-5">
-                <%= link_to "カート", cart_items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-              <li class="mr-5">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-          <% else %>
-              <li class="mr-5">
-                <%= link_to "About", about_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-              <li class="mr-5">
-                <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-              <li class="mr-5">
-                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
-              <li class="mr-5">
-                <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary w-100 px-3 py-1" %>
-              </li>
+            </div>
           <% end %>
-        </ul>
-      </div>
+        </div>
+        
+          
+      <% elsif customer_signed_in?  %>
+          <div class="mr-5 mt-4">
+            <h5>ようこそ <%= current_customer.last_name %>さん</5>
+          </div>
+          <div class="d-flex flex-column align-items-end mr-5 pr-5">
+            <ul class="list-unstyled">
+              <div class="d-flex ">
+                <li class="mr-5 ">
+                  <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+                </li>
+                <li class="mr-5">
+                  <%= link_to "商品一覧", items_path, class: "btn btn-outline-dark  w-100 px-3  py-2" %>
+                </li>
+                <li class="mr-5">
+                  <%= link_to "カート", cart_items_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+                </li>
+                <li class="mr-5">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+                </li>
+            </ul>
+            <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-1 my-lg-0" do |f| %>
+              <div class="input-group mr-5">
+                <%= f.text_field :word, class: "form-control", placeholder: "Search" %>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+           
+      <% else %>
+        <div class="d-flex flex-column align-items-end mr-5 pr-5">
+          <ul class="list-unstyled">
+            <div class="d-flex ">
+              <li class="mr-5 ">
+                <%= link_to "About", about_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+              <li class="mr-5">
+                <%= link_to "商品一覧", items_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+              <li class="mr-5">
+                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+              <li class="mr-5">
+                <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-dark  w-100 px-3 py-2" %>
+              </li>
+          </ul>
+          <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-1 my-lg-0" do |f| %>
+            <div class="input-group mr-5">
+              <%= f.text_field :word, class: "form-control", placeholder: "Search" %>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </nav>
 </header>
