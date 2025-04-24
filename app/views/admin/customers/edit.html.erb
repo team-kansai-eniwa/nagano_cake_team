@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<h4 class="bg-light px-4 ml-3 d-inline-block"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
+<h4 class="admin-title"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4>
   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
     <table class="table mt-4 table-borderless" style="width: 60%;">
       <tr>

@@ -1,20 +1,13 @@
-<div class="container mt-3 mb-5">
-
-<!--  -->
-  <div class="row">
-    <div class="col-md-10 d-flex align-items-center justify-content-between">
-      <h4 class="bg-light px-4 ml-3 d-inline-block">商品一覧</h4>
-    </div>
-    <div class="col-md-2">
+<div class="container my-5">
+  <h4 class="admin-title">商品一覧</h4>
+    <div class="add-btn">
       <%= link_to new_admin_item_path do %>
         <%= image_tag 'add_new_item.png', style: "width: 100px;" %>
       <% end %>
     </div>
-  </div>
 
-  <!-- ワイヤー図だと灰色の線はないが統一するためそうしていない（必要ならtable class内にtable-borderlessの追記） -->
-  <table class="table mt-3">
-    <thead class="thead-light custom-bordered-thead">
+  <table class="table mt-4 admin-table table-borderless">
+    <thead>
       <tr>
       <th style="width: 10%;">商品ID</th>
       <th style="width: 30%;">商品名</th>
