@@ -13,13 +13,13 @@
         </tr>
         <% @cart_items.each do |cart_item| %>
           <tr>
-            <td >
+            <td class="align-middle ">
             <%= image_tag cart_item.item.image, size: "80x40", class: "me-2 rounded mr-3" %>
               <%= cart_item.item.name %>
             </td> 
-            <td style="width: 150px;"><%= cart_item.tax_price %></td> 
-            <td style="width: 150px;"><%= cart_item.amount %></td>
-            <td style="width: 150px;"><%= number_with_delimiter(cart_item.subtotal) %></td>
+            <td class="align-middle " style="width: 150px;"><%= cart_item.tax_price %></td> 
+            <td class="align-middle " style="width: 150px;"><%= cart_item.amount %></td>
+            <td class="align-middle " style="width: 150px;"><%= number_with_delimiter(cart_item.subtotal) %></td>
           </tr>
         <% end %>
       </table>

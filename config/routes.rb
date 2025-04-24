@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
+    get "search" => "searches#search"
   end
 
   namespace :admin do
