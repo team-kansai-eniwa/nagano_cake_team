@@ -1,7 +1,7 @@
 <div class="container my-5">
-  <h4 class="bg-light px-4 ml-3 d-inline-block"><%= "#{@customer.last_name} #{@customer.first_name}" %>さんの注文履歴</h4>
-  <table class="table mt-4">
-    <thead class="thead-light custom-bordered-thead">
+  <h4 class="admin-title"><%= "#{@customer.last_name} #{@customer.first_name}" %>さんの注文履歴</h4>
+  <table class="table mt-4 admin-table table-borderless">
+    <thead>
       <tr>
       <th>購入日時</th>
       <th>注文個数</th>
