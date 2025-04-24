@@ -1,7 +1,7 @@
-<div class="container my-5">
+<div class="container white-bg p-5">
 <h4 class="admin-title">ジャンル編集</h4>
 
-  <div class="py-5">
+  <h4 class="py-5">
     <%= form_with model: [:admin, @genre], local: true do |f| %>
       <div class="d-flex mb-3" style="gap: 80px;">
         <%= f.label :name, "ジャンル名", class: "form-label" %>
@@ -9,6 +9,6 @@
         <%= f.submit "   変更を保存   ", class: "btn btn-success", style: "border-radius: 8px;" %>
       </div>
     <% end %>
-    </div>
-    
+  </h4>
 </div>
+

@@ -1,37 +1,116 @@
 @use '~bootstrap/scss/bootstrap';
 
-
-  /*ページネーション自体のデザイン*/
-  .pagination>li>a {          
-    color: #000000;   /*文字の色を変える*/
-  }
-  /* 表示しているページ番号のデザイン */
-  .pagination>.active>a {     
-    background: #3d3f41;     /*背景の色を変える*/
-  }
-  /*ホバー時のデザイン*/
-  .pagination>li>a:hover {        
-    background: #696b6d;     /*背景の色を変える*/
-    color: #ffffff;   /*文字の色を変える*/
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
+  // 共通のレイアウト
+  body {
+    font-family: 'Kaisei Decol', cursive, sans-serif;
+    background-color: rgb(243, 222, 196);
+    font-size: 1.25rem;
+  }
 
+    //ページネーションのデザイン
+    $pagenation_color: #2c1a00; 
+    .page-item.active .page-link {
+      background-color: #a17f47;
+      border-color: #a17f47;
+    }
+    .a page-link {
+      color: $pagenation_color;
+    }
+    .page-item a:hover {
+      color: $pagenation_color;
+    }
+    .page-item a {
+      color: $pagenation_color;
+    }
+  
+
+  // ヘッダーのレイアウト
   .custom-header {
     background-color: #f8c471; 
-    padding: 16px;
-    color: white; 
+    color: rgb(36, 36, 36); 
   }
 
+  // ヘッダーボタンのフォントサイズを指定
+  .header_menu .btn {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  // フッターのレイアウト
+  .custom-footer {
+      width: 100%;
+      height: 120px;
+      text-align: center;
+      line-height: 120px;
+      background-color: #755c34; 
+    }
+    
+    .footer-text {
+      color: #fff;
+    }
+
+
+  // Customer側のレイアウト
+
+  // 編集機能など中心部の背景を白に変更
+  .white-bg {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); // 軽く影をつけると浮き上がる感じに
+  }
+
+  // 使用箇所は要確認
+  .customers-table {
+    padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+    color: #494949;/*文字色*/
+    font-weight: bold; /* 太字 */
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 5px #f8c471; /*左線*/
+    border-bottom: solid 3px #d7d7d7;/*下線*/
+  }
+
+  // 文字サイズ調整
+  .about-message {
+    font-size: 20px;
+  }
+
+  .top-message {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  // ジャンルウィンドウを大きくしようとしたが適用されない
+  .genre-box{
+    font-size: 1.3rem;
+  }
+
+
   // Admin側のレイアウト
-  
+
+  // 複数のデータを表示する、編集機能などあるため中心部の背景を白に変更
+  .white-bg {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); // 軽く影をつけると浮き上がる感じに
+  }
+
+  // テーブルのレイアウト
   .admin-table {
-    background-color: #ffe9d1; // セルの背景色
-    border: 2px solid #2c1a00;      // テーブル全体の外枠
+    background-color: #ffe9d1;    // セルの背景色
+    border: 2px solid #2c1a00;    // テーブル全体の外枠
     border-radius: 12px;            // 角を丸く
     border-collapse: separate;      // セルを独立させる（角丸を効かせるため）
     border-spacing: 0;              // セル間の隙間をなくす
     overflow: hidden;               // はみ出し防止（角丸に必要）
-    
+    font-size: 1.1rem;
 
     thead {
       background-color: #f8c471; 
@@ -39,66 +118,64 @@
       font-weight: bold;
       border-bottom: 2px solid #201301; // thead 下に罫線を追加
     }
-    
     tbody tr:first-child td {
       border-top: none; // 重複防止のため
     }
-    
     th {
       border: none;
       text-align: center;
       padding: 12px;
     }
-    
     td {
       border: 1px solid #c2b2a5;  // セルの中の枠線
       text-align: center;
       padding: 12px;
     }
-    
     tbody tr:hover {
       background-color: #f9f9f9;
     }
-    
     /* 最初と最後のセルの角を丸く（thead） */
     thead th:first-child {
       border-top-left-radius: 12px;
     }
-    
     thead th:last-child {
       border-top-right-radius: 12px;
     }
-    
     /* 最後の行の角を丸く（tbody） */
     tbody tr:last-child td:first-child {
       border-bottom-left-radius: 12px;
     }
-    
     tbody tr:last-child td:last-child {
       border-bottom-right-radius: 12px;
     }
-    
     /* tbody の最初の行に top border を追加して、thead とtbody の区切り線を強調 */
     tbody tr:first-child td {
       border-top: 2px solid #201301;
     }
   }
 
+  // 管理者側（新規登録、編集、詳細画面の視認性を上げるためフォントサイズ変更）
+  .ex-admin-table{
+    font-size: 1.25rem;
+  }
+
+  // 見出し部分のバー
   .admin-title {
     padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
     color: #494949;/*文字色*/
+    font-weight: bold;
     background: #f4f4f4;/*背景色*/
     border-left: solid 5px #f8c471; /*左線*/
     border-bottom: solid 3px #d7d7d7;/*下線*/
   }
 
-
+  // 新規商品登録ボタン
   .add-btn {
     position: fixed;     // 画面に固定
     top: 140px;        // 下からの距離（必要に応じて調整）
     right: 40px;         // 右からの距離
     z-index: 1000;       // 他の要素より前に表示
-  
+
     img {
       opacity: 0.85;     // 少し透過
       transition: opacity 0.3s ease;
@@ -108,3 +185,4 @@
       }
     }
   }
+

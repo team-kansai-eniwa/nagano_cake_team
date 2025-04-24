@@ -1,7 +1,7 @@
-<div class="container my-5">
+<div class="container white-bg p-5">
     <h4 class="admin-title">注文履歴詳細</h4>
 
-  <table class="table table-borderless">
+  <table class="table mt-5 table-borderless ex-admin-table">
     <tr>
       <th style="width: 20%;">購入者</th>
       <td><u><%= link_to @order.customer.last_name + " " + @order.customer.first_name, admin_customer_path(@order.customer), class: "text-dark" %></u></td>
@@ -27,7 +27,7 @@
       <%= form_with model: [:admin, @order], url: admin_order_path(@order), method: :patch do |f| %>
         <div class="d-flex align-items-center">
         <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] } %>
-          <%= f.submit "更新", class: "btn btn-success btn-sm ml-3", style: "border-radius: 8px;" %>
+          <%= f.submit "更新", class: "btn btn-success ml-3", style: "border-radius: 8px;" %>
         </div>
       <% end %>
       </td>
@@ -57,7 +57,7 @@
             <%= form_with model: [:admin, order_detail], url: admin_order_detail_path(order_detail), method: :patch do |f| %>
               <div class="d-flex align-items-center">
                 <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [I18n.t("enums.order_detail.making_status.#{k}"), k] } %>
-                <%= f.submit "更新", class: "btn btn-success btn-sm ml-3", style: "border-radius: 8px;" %>
+                <%= f.submit "更新", class: "btn btn-success ml-3", style: "border-radius: 8px;" %>
               </div>
             <% end %>
             </td>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="align-self-end ml-5">
-    <table class="table table-borderless">
+    <table class="table table-borderless ex-admin-table">
         <tr>
           <th>商品合計</th>
           <td class="text-end"><%= number_with_delimiter(@order.total_payment)+ " 円" %></td>
