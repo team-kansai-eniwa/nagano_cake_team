@@ -2,7 +2,7 @@
   <h4 class="customers-table">配送先編集</h4>
   <div class="row">
     <div class="col-12 ">
-      <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+      <%= form_with model: @address, url: address_path, method: :patch do |f| %>
         <table class=" table table-borderless" style="width: 1000px">
           <!-- 郵便番号 -->
           <tr>

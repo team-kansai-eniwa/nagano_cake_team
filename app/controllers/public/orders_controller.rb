@@ -3,7 +3,13 @@ class Public::OrdersController < ApplicationController
   attr_accessor :total_price
   
   def new
-    @order = Order.new
+    @cart_items = current_customer.cart_items.includes(:item)
+    if @cart_items.present?
+      @order = Order.new
+    else
+      flash[:alert] = "カートが空です。商品を追加してください。"
+      redirect_to cart_items_path
+    end
   end
 
   def confirm
