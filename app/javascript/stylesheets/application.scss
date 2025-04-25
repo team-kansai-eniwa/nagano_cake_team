@@ -8,7 +8,7 @@
 
   // 共通のレイアウト
   body {
-    font-family: 'Kaisei Decol', cursive, sans-serif;
+    font-family: 'Kaisei Opti', cursive, sans-serif;
     background-color: rgb(243, 222, 196);
     font-size: 1.25rem;
   }
@@ -38,8 +38,40 @@
 
   // ヘッダーボタンのフォントサイズを指定
   .header_menu .btn {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
+  }
+
+  .btn-outline-brown {
+    color: #2c1a00;
+    border-color: #2c1a00;
+  }
+  
+  .btn-outline-brown:hover {
+    color: #f8c471; 
+    background-color: #2c1a00;
+    border-color: #2c1a00;
+  }
+
+  // 検索フォーム
+  .btn-outline-brown {
+    color: #2c1a00;
+    border-color: #2c1a00;
+  }
+  
+  .btn-outline-brown:hover {
+    background-color: #2c1a00;
+    color: white;
+    border-color: #2c1a00;
+  }
+  
+  .input-brown {
+    border-color: #2c1a00;
+    color: #2c1a00;
+  }
+  
+  .input-brown::placeholder {
+    color: #A89C94;
   }
 
   // フッターのレイアウト
@@ -83,7 +115,8 @@
 
   .top-message {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 15px;
+    line-height: 20px;
   }
 
   // ジャンルウィンドウを大きくしようとしたが適用されない
