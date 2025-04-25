@@ -50,9 +50,9 @@
           <% @order.order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= number_with_delimiter(order_detail.item.price) %></td>
+            <td><%= number_with_delimiter((order_detail.item.price * 1.1).floor) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= number_with_delimiter(order_detail.item.price * order_detail.amount) %></td>
+            <td><%= number_with_delimiter((order_detail.item.price * 1.1 * order_detail.amount).floor) %>
             <td>
             <%= form_with model: [:admin, order_detail], url: admin_order_detail_path(order_detail), method: :patch do |f| %>
               <div class="d-flex align-items-center">
@@ -71,7 +71,7 @@
     <table class="table table-borderless ex-admin-table">
         <tr>
           <th>商品合計</th>
-          <td class="text-end"><%= number_with_delimiter(@order.total_payment)+ " 円" %></td>
+          <td class="text-end"><%= number_with_delimiter((@order.total_payment * 1.1).floor, delimiter: ",") + " 円" %></td>
         </tr>
         <tr>
           <th>送料</th>
@@ -79,7 +79,7 @@
         </tr>
         <tr>
           <th>請求金額合計</th>
-          <td class="text-right"><%= number_with_delimiter(@order.total_payment + @order.shipping_cost)+ " 円" %></td>
+          <td class="text-right"><%= number_with_delimiter((@order.total_payment * 1.1 + @order.shipping_cost).floor, delimiter: "," ) + " 円" %></td>
         </tr>
       </table>
     </div>
