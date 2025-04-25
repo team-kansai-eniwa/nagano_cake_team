@@ -13,13 +13,11 @@
     
   </head>
 
-  <body style="background-color: 	">
-    <div>
-      <%= render 'layouts/header' %>
-    </div>
-    <%= yield %>
-    <div >
-      <%= render 'layouts/footer' %>
-    </div>
+  <body style="background-color:">
+    <%= render 'layouts/header' %>
+    <main class="mb-auto">
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
