@@ -1,10 +1,9 @@
-<div class="container mt-5">
+<div class="container white-bg p-5">
+<h4 class="customers-table">ショッピングカート</h4>
   <div class="row">
     <div class="col">
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <div class="bg-light text-center ml-5" style="width: 250px"> 
-          <h5>ショッピングカート</h5>
-        </div>
+        <h4></h4>
         <%= link_to "カート空にする", cart_items_destroy_all_path, method: :delete, class: 'btn btn-danger' %>
       </div>
       <table class="table table-bordered">
