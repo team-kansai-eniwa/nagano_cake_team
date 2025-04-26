@@ -1,0 +1,73 @@
+<div class="container white-bg p-5">
+
+<!-- 後日部分テンプレート予定 -->
+  <% if @item.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>以下のエラーがあります：</h6>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h4 class="admin-title">商品新規登録</h4>
+  <div class="row mt-5 ex-admin-table">
+    <div class="col-md-8 mx-auto">
+      <%= form_with model: @item, local: true, html: { multipart: true }, url: admin_items_path do |f| %>
+        <div class="row mb-3">
+          <%= f.label :image, "商品画像", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+            <%= f.file_field :image, id: 'image_input' %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :name, "商品名", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :introduction, "商品説明", class: "col-md-3 col-form-label" %>
+            <div class="col-md-9">
+            <%= f.text_area :introduction, rows: 5, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :genre_id, "ジャンル", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+            <%= f.collection_select :genre_id, @genres, :id, :name, 
+            { prompt: "--選択してください--" }, 
+            { class: "form-select", style: "width: 100%;" } %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :price, "税抜価格", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+            <div class="input-group">
+              <%= f.text_field :price, class: "form-control" %>円
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <%= f.label :is_active, "販売ステータス", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_active, true, id: "active_true", class: "form-check-input" %>
+              <%= f.label :is_active_true, "販売中", class: "form-check-label" %>
+            </div>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_active, false, id: "active_false", class: "form-check-input" %>
+              <%= f.label :is_active_false, "販売停止中", class: "form-check-label" %>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= f.submit "新規登録", class: "btn btn-success btn-lg", style: "border-radius: 8px;" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

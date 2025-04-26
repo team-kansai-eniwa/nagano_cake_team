@@ -1,0 +1,32 @@
+<div class="container-fluid my-5">
+  <div class="row px-5">
+    <div class="col-md-2 mr-5">
+      <%= render 'public/items/genre', genres: @genres %>
+    </div>
+
+    <div class="col-md-9 px-5">
+      <% if params[:genre_id].present? %>
+        <p><span class="h2"><%= @genre.name %> 一覧</span>全<%= @items.total_count %>件</span></p>
+      <% else %>
+        <p><span class="h2">商品一覧</span>(全<%= @items_count %>件)</span></p>
+      <% end %> 
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-3">
+            <div>
+              <%= link_to item_path(item) do %>
+                <%= image_tag url_for(item.image), class: "img-thumbnail", style: "width: 350px; height: 200px; object-fit: cover;" %>
+              <% end %>
+              <h5><%= item.name %></h5>
+              <h5 class="mb-4">￥<%= number_with_delimiter(item.price) %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-center mt-5">
+        <%= paginate @items %>
+      </div>
+    </div>
+  </div>
+</div>
+      

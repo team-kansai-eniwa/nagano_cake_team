@@ -1,0 +1,47 @@
+<div class="container white-bg p-5"> 
+  <div class=" text-center"> 
+    <h4 class="mb-4">ログイン</h4>
+  </div>
+  <div class="row ml-5">
+    <div class="col-12 ml-5">
+      <div class="bg-light text-center" style="width: 300px"> 
+        <h5 class="w-100 my-4" >会員の方はこちらからログイン</h5>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <table class="ml-5" style="width: 600px;">
+          <tr>
+            <td>
+              <div class="d-flex align-items-center my-2">
+                <%= f.label :email, "メールアドレス", style: "min-width: 200px;" %>
+                <%= f.email_field :email, class: "form-control", style: "max-width: 300px;" %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center my-2">
+                <%= f.label :password, "パスワード", style: "min-width: 200px;" %>
+                <%= f.password_field :password, class: "form-control", style: "max-width: 300px;" %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center my-4">
+                <div style="min-width: 200px;"></div> <!-- ラベル分のスペース -->
+                <%= f.submit "ログイン", class: "btn btn-primary", style: "width: 150px;" %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+    <div class="col-12 ml-5 my-4">
+      <div class="bg-light text-center" style="width: 250px"> 
+        <h5 class="mb-3">会員登録がお済でない方</h5>
+      </div>
+      <%= link_to "こちら", new_customer_registration_path, class: "ml-5" %>から新規登録を行ってください。
+    </div>
+  </div>
+</div>
+

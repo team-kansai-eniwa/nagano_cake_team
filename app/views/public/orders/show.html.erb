@@ -1,0 +1,74 @@
+<div class="container white-bg p-5"> 
+  <h4 class="customers-table mb-5">注文履歴詳細</h4>
+  <div class="row">
+    <div class="col-8">
+      <div class="mb-4">
+        <h5>注文情報</h5>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light" style="width: 150px;" >注文日</th>
+          <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <th class="bg-light" style="width: 150px;" >配送先</th>
+          <td>
+            〒<%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %><br> 
+          </td>
+        </tr>
+        <tr>
+          <th class="bg-light" style="width: 150px;"  >支払方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th class="bg-light" style="width: 150px;">ステータス</th>
+          <td><%= t("activerecord.attributes.order.status.#{@order.status_i18n}") %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4">
+      <div class="mb-4">
+        <h5>請求情報</h5>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light" style="width: 150px;" >商品合計</th>
+          <td><%= number_with_delimiter((@total_price).floor) %></td>
+        </tr>
+        <tr>
+          <th class="bg-light" style="width: 150px;">配送料</th>
+          <td><%= @postage %></td>
+        </tr>
+        <tr>
+          <th class="bg-light" style="width: 150px;">ご請求額</th>
+          <td><%= number_with_delimiter(@total_price + @postage) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="my-4">
+        <h4>注文内容</h4>
+      </div>
+      <table class="table table-bordered" style="width: 900px;">
+          <tr>
+            <th class="bg-light">商品</th>
+            <th class="bg-light">単価（税込）</th>
+            <th class="bg-light">個数</th>
+            <th class="bg-light" >小計</th>
+          </tr>
+          <% @order.order_details.each do |order_detail| %>
+              <tr>
+                <td style="width: 600px;"><%= order_detail.item.name %></td> 
+                <td><%= (order_detail.price).floor %></td> 
+                <td><%= order_detail.amount %></td>
+                <td><%= number_with_delimiter((order_detail.price * order_detail.amount).floor) %></td>
+              </tr>
+          <% end %>
+      </table>
+    </div>
+  </div>
+</div>

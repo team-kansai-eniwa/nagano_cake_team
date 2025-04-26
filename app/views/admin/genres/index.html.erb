@@ -1,0 +1,37 @@
+<!-- ジャンルの削除機能を一時実装中_View訂正時にRouteとControllerも訂正 -->
+
+<div class="container white-bg p-5">
+  <h4 class="admin-title">ジャンル一覧・追加</h4>
+
+  <div class="py-5">
+    <h4>
+    <%= form_with model: Genre.new, url: admin_genres_path, local: true do |f| %>
+      <div class="d-flex align-items-center mb-3" style="gap: 80px;">
+        <%= f.label :name, "ジャンル名", class: "form-label" %>
+        <%= f.text_field :name, placeholder: "ジャンル名", style: "width: 275px;" %>
+        <%= f.submit "     新規登録     ", class: "btn btn-success", style: "border-radius: 8px;" %>
+      </div>
+    <% end %>
+    </h4>
+  </div>
+
+  <div style="width: 60%; padding-right: 120px;">
+    <table class="table admin-table table-borderless">
+      <thead>
+        <tr>
+          <th style="width: 60%;">ジャンル</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.name %></td>
+            <td><%= link_to '編集', edit_admin_genre_path(genre), class: "btn btn-success", style: "border-radius: 8px;" %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

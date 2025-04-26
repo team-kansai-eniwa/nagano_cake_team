@@ -1,0 +1,24 @@
+<div class="container white-bg p-5">
+  <h4 class="admin-title"><%= "#{@customer.last_name} #{@customer.first_name}" %>さんの注文履歴</h4>
+  <table class="table mt-5 admin-table table-borderless">
+    <thead>
+      <tr>
+        <th>購入日時</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><u><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'), admin_order_path(order), class: "text-dark" %></u></td>
+          <td><%= order.order_details.sum(&:amount) %></td>
+          <td><%= order.status_i18n %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <%= paginate @orders %>
+  </div>
+</div>
