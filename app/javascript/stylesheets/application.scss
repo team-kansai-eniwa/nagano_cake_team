@@ -13,30 +13,30 @@
     font-size: 1.25rem;
   }
 
-    // 編集機能など中心部の背景を白に変更
-    .white-bg {
-      background-color: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); // 軽く影をつけると浮き上がる感じに
-      min-height: calc(100vh - 80px);
-    }
+  // 編集機能など中心部の背景を白に変更
+  .white-bg {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); // 軽く影をつけると浮き上がる感じに
+    min-height: calc(100vh - 80px);
+  }
 
-    //ページネーションのデザイン
-    $pagenation_color: #2c1a00; 
-    .page-item.active .page-link {
-      background-color: #a17f47;
-      border-color: #a17f47;
-    }
-    .a page-link {
-      color: $pagenation_color;
-    }
-    .page-item a:hover {
-      color: $pagenation_color;
-    }
-    .page-item a {
-      color: $pagenation_color;
-    }
+  // ページネーションのデザイン
+  $pagenation_color: #2c1a00; 
+  .page-item.active .page-link {
+    background-color: #a17f47;
+    border-color: #a17f47;
+  }
+  .a page-link {
+    color: $pagenation_color;
+  }
+  .page-item a:hover {
+    color: $pagenation_color;
+  }
+  .page-item a {
+    color: $pagenation_color;
+  }
   
 
   // ヘッダーのレイアウト
@@ -85,17 +85,16 @@
 
   // フッターのレイアウト
   .custom-footer {
-      width: 100%;
-      height: 120px;
-      text-align: center;
-      line-height: 120px;
-      background-color: #755c34; 
-    }
-    
-    .footer-text {
-      color: #fff;
-    }
-
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    line-height: 120px;
+    background-color: #755c34; 
+  }
+  
+  .footer-text {
+    color: #fff;
+  }
 
   // Customer側のレイアウト
 
@@ -124,7 +123,6 @@
   .genre-box{
     font-size: 1.3rem;
   }
-
 
   // Admin側のレイアウト
 
@@ -198,7 +196,7 @@
   // 新規商品登録ボタン
   .add-btn {
     position: fixed;     // 画面に固定
-    top: 140px;        // 下からの距離（必要に応じて調整）
+    top: 140px;          // 下からの距離（必要に応じて調整）
     right: 40px;         // 右からの距離
     z-index: 1000;       // 他の要素より前に表示
 
